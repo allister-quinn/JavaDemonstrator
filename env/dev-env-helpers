@@ -1,0 +1,59 @@
+# Undocumented feature which sets the size to "unlimited".
+#HISTSIZE=1000
+#HISTFILESIZE=2000
+export HISTFILESIZE=
+export HISTSIZE=
+export HISTTIMEFORMAT="[%F %T] "
+export HISTFILE=~/.bash_eternal_history
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
+# aliases
+alias bashrc='sudo subl ~/.bashrc'
+alias sourceit='source ~/.bashrc'
+alias c='printf "\033c"'
+alias dil='docker image ls'
+alias dcl='docker container ls'
+
+n () {
+	sudo nautilus .
+}
+
+g () {
+	grep -rnis $1
+}
+
+a () {
+	sudo apt install $1
+}
+
+aup () {
+	sudo apt update
+	sudo apt upgrade
+}
+
+f () {
+	sudo find . -name *$1*
+}
+
+h () {
+    if [ $# -eq 0 ]
+      then
+        history
+    else
+        history | grep $1
+    fi
+}
+
+x () {
+    sudo chmod +x $1
+}
+
+
+# colourised git add-on for bash
+GIT_PROMPT_ONLY_IN_REPO=1
+GIT_PROMPT_SHOW_UNTRACKED_FILES=all # can be no, normal or all; determines counting of untracked files
+GIT_PROMPT_THEME=Solarized # use theme optimized for solarized color scheme
+source ~/.bash-git-prompt/gitprompt.sh
+
+# add to /etc/inputrc for ctrl+backspace delete of word in terminal
+"\C-h": backward-kill-word
