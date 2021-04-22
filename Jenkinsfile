@@ -11,11 +11,10 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-    }
-
-    stage('Test') {
-      steps {
-        sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:9000'
-      }
+        stage('Test') {
+            steps {
+                sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:9000'
+            }
+        }
     }
 }
