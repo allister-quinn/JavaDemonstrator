@@ -11,10 +11,23 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package' 
             }
         }
-        stage('Test') {
+        stage('Static Analysis') {
             steps {
-                sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:9000'
+                withSonarQubeEnv('SonarQube') {
+                    sonar:sonar
+                }
             }
         }
+        stage('Quality Gate') {
+            steps {
+                waitForQualityGate abortPipeline: true
+            }
+        }
+    }
+}
+
+stage('Static analysis') {
+    steps {
+        
     }
 }
