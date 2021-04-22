@@ -15,7 +15,7 @@ pipeline {
 
     stage('QA') {
       steps {
-        sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=password'
+        sh 'mvn sonar:sonar'
       }
     }
 
