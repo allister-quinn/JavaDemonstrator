@@ -1,9 +1,14 @@
 package com.allisterquinn.learning;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class MyClass {
 
-    public int MyFunction() {
-        int i = 42;
-        return i;
+    Logger logger = LoggerFactory.getLogger(MyClass.class);
+
+    public int myFunction() {
+        logger.info("TO THE MOON");
+        return 42;
     }
 }

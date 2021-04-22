@@ -10,6 +10,6 @@ class MyClassTest {
     void myFunction() {
         MyClass myClass = new MyClass();
         int i = 42;
-        Assertions.assertEquals(myClass.MyFunction(), i);
+        Assertions.assertEquals(myClass.myFunction(), i);
     }
 }

@@ -8,7 +8,8 @@ public class LearningApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LearningApplication.class, args);
-        System.out.println("TO THE MOON");
+        MyClass myClass = new MyClass();
+        myClass.myFunction();
     }
 
 }
