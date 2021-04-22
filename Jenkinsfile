@@ -18,6 +18,4 @@ pipeline {
         sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:9000'
       }
     }
-
-  }
 }
