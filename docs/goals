@@ -1,0 +1,39 @@
+Everything but the code.
+
+- Set up Maven project
+    Spring Boot - DONE
+    Spring Auth - DONE
+    Mockito
+    JUnit - DONE
+    Cucumber
+    MongoDB - DONE
+    PostgreSQL - DONE
+- Set up Angular project?
+- Set up Jenkins CI
+- Set up ROBOT
+- Set up Selenium
+- Set up Kubernetes
+
+This process must be:
+- Documentated
+- Repeatable
+
+Developer Environment:
+Ubuntu 20.04
+OpenJDK 11
+IntelliJ
+Docker
+Jenkins with Blue Ocean
+
+
+sudo apt install openjdk-11-jdk
+sudo apt install docker.io
+sudo apt install maven
+sudo apt install meld
+sudo apt install curl
+sudo apt install terminator
+sudo apt install postgresql
+
+Jenkins
+docker pull jenkins/jenkins
+docker run -d -v jenkins_home:/var/jenkins_home -p 8080:8080 -p 50000:50000 jenkins/jenkins:lts

@@ -1,0 +1,49 @@
+Java
+Python
+Design Patterns
+
+Spring Boot
+    SPRING INITIALIZR
+    - Use Spring Initializr to create a Maven project with Spring libraries e.g. auth, web. 
+    - Can either use Spring Initialzr website or IDE such as IntelliJ IDEA or STS (Spring IDE)
+    SPRING WEB
+    - Uses Apache Tomcat as default embedded container
+    SPRING SECURITY
+    - Security/OATH2/LDAP
+    
+Maven
+MongoDB
+PostgreSQL
+MemSQL
+AWS S3 storage
+CI
+Jenkins
+    BLUE OCEAN
+    - A plugin/UI for Jenkins that simplifies the UI/experience
+GitLab
+Angular + HTML/CSS/JavaScript
+REST Services
+Microservices
+Mockito
+JUnit
+Cucumber/Gherkin
+Selenium
+ROBOT
+Docker
+Kubernetes
+Enterprise Architect
+Eclipse Papyrus
+
+
+
+
+
+Other technologies:
+Thymeleaf
+- Thymeleaf is a Java library. It is an XML/XHTML/HTML5 template engine able to apply a set of transformations to template files in order to display data and/or text produced by your applications.
+Jakarta EE
+- Less in favour but seems to be pivoting towards cloud applications
+RabbitMQ
+- open source message broker?
+Kafka
+- open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications

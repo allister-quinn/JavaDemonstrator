@@ -1,0 +1,53 @@
+LANGUAGES
+Java: Primary development language
+Python: For scripts/tools
+
+SOFTWARE ENGINEERING
+Design Patterns: Try and crowbar in the main ones
+
+Frameworks:
+Jakarta EE: Not using in this project. 
+Spring Boot: Framework of choice
+    - Auth
+
+Build Systems:
+Maven: Build tool of choice
+
+Databases:
+MongoDB: For unstructured data
+PostgreSQL: For SQL queries
+MemSQL: For high performance queries?
+
+Cloud Services:
+AWS S3 storage
+
+Web Server:
+?
+
+CI:
+Jenkins: CI tool of choice
+GitLab: 
+
+Web Applications:
+Angular + HTML/CSS/JavaScript: Front-end web framework and languages of choice
+REST Services
+Microservices
+
+Testing:
+Mockito: For mock tests
+JUnit: For unit tests
+Cucumber: For BDD tests
+
+Automation:
+Selenium: For front-end automation testing
+ROBOT: For automation testing control
+
+Containerisation:
+Docker: Container of choice
+
+Orchestration:
+Kubernetes: Container orchestrator of choice
+
+Modeling:
+Enterprise Architect: Advanced UML Tool
+Eclipse Papyrus: UML tool
