@@ -36,9 +36,6 @@ Eclipse Papyrus
 SonarQube
 
 
-
-
-
 Other technologies:
 Thymeleaf
 - Thymeleaf is a Java library. It is an XML/XHTML/HTML5 template engine able to apply a set of transformations to template files in order to display data and/or text produced by your applications.
@@ -50,67 +47,3 @@ Kafka
 - open-source distributed event streaming platform used by thousands of companies for high-performance data pipelines, streaming analytics, data integration, and mission-critical applications
 
 
-
-
-sudo apt install openjdk-11-jdk
-sudo apt install docker.io
-sudo apt install maven
-sudo apt install meld
-sudo apt install curl
-sudo apt install terminator
-sudo apt install postgresql
-
-
-SONARQUBE
-docker pull sonarqube
-docker run -d --name sonarqube --rm --network jenkins -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
-
-JENKINS
-docker pull jenkins/jenkins
-
-docker run \
-  --name jenkins-dind \
-  --rm \
-  --detach \
-  --privileged \
-  --network jenkins \
-  --network-alias docker \
-  --env DOCKER_TLS_CERTDIR=/certs \
-  --volume jenkins-docker-certs:/certs/client \
-  --volume jenkins-data:/var/jenkins_home \
-  --publish 3000:3000 \
-  --publish 2376:2376 \
-  docker:dind \
-  --storage-driver overlay2
-  
-echo 'FROM jenkins/jenkins:lts-jdk11
-USER root
-RUN apt-get update && apt-get install -y apt-transport-https \
-       ca-certificates curl gnupg2 \
-       software-properties-common
-RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add -
-RUN apt-key fingerprint 0EBFCD88
-RUN add-apt-repository \
-       "deb [arch=amd64] https://download.docker.com/linux/debian \
-       $(lsb_release -cs) stable"
-RUN apt-get update && apt-get install -y docker-ce-cli
-USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean docker-plugin docker-workflow"' >> Dockerfile
-
-docker build -t jenkins-docker .
-
-docker run \
-  --name jenkins-docker \
-  --rm \
-  --detach \
-  --network jenkins \
-  --env DOCKER_HOST=tcp://docker:2376 \
-  --env DOCKER_CERT_PATH=/certs/client \
-  --env DOCKER_TLS_VERIFY=1 \
-  --publish 8080:8080 \
-  --publish 50000:50000 \
-  --volume jenkins-data:/var/jenkins_home \
-  --volume jenkins-docker-certs:/certs/client:ro \
-  --volume "$HOME":/home \
-  jenkins-docker
-  
