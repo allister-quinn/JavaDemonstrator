@@ -9,13 +9,13 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh 'mvn -B -DskipTests clean package'
+        sh 'mvn clean package'
       }
     }
 
-    stage('Test') {
+    stage('QA') {
       steps {
-        sh 'mvn sonar:sonar -Dsonar.host.url=http://<IP address>:9000'
+        sh 'mvn sonar:sonar -Dsonar.host.url=http://localhost:9000 -Dsonar.login=admin -Dsonar.password=password'
       }
     }
 
