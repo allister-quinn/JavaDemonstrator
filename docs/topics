@@ -38,6 +38,9 @@ Mockito: For mock tests
 JUnit: For unit tests
 Cucumber: For BDD tests
 
+QA:
+SonarQube: Static analysis tool of choice
+
 Automation:
 Selenium: For front-end automation testing
 ROBOT: For automation testing control
@@ -51,3 +54,4 @@ Kubernetes: Container orchestrator of choice
 Modeling:
 Enterprise Architect: Advanced UML Tool
 Eclipse Papyrus: UML tool
+
