@@ -1,23 +1,11 @@
-sudo apt install openjdk-11-jdk
-sudo apt install docker.io
-sudo apt install maven
-sudo apt install meld
-sudo apt install curl
-sudo apt install terminator
-sudo apt install postgresql
-sudo apt install git
+#!/bin/bash
 
-SSH KEYS
-ssh-keygen -t ed25519 -C "allisterquinn@gmail.com"
-cat id_ed25519.pub
-
-SONARQUBE
+echo "Starting SonarQube"
 docker pull sonarqube
 docker run -d --name sonarqube --rm --network jenkins -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
 
-JENKINS
+echo "Starting Jenkins"
 docker pull jenkins/jenkins
-
 docker run \
   --name jenkins-dind \
   --rm \
@@ -48,7 +36,6 @@ USER jenkins
 RUN jenkins-plugin-cli --plugins "blueocean docker-plugin docker-workflow"' >> Dockerfile
 
 docker build -t jenkins-docker .
-
 docker run \
   --name jenkins-docker \
   --rm \
@@ -64,7 +51,7 @@ docker run \
   --volume "$HOME":/home \
   jenkins-docker
   
-  
-POSTGRES
+
+echo "Starting PostgreSQL"
 docker pull postgres
 docker run --name postgres --rm --network jenkins -e POSTGRES_PASSWORD=password -e POSTGRES_DB=registration -d postgres
