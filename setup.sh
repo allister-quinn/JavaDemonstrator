@@ -3,9 +3,12 @@
 echo "Starting SonarQube"
 docker pull sonarqube
 docker run -d --name sonarqube --rm --network jenkins -e SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true -p 9000:9000 sonarqube:latest
+# manual steps:
+# - setup username / password (starter creds are admin/admin)
+# - generate security key ca690640925f1c0ce58968bcb044445796e895c6
 
 echo "Starting Jenkins"
-docker pull jenkins/jenkins
+docker image pull docker:dind
 docker run \
   --name jenkins-dind \
   --rm \
@@ -21,6 +24,7 @@ docker run \
   docker:dind \
   --storage-driver overlay2
   
+docker pull jenkins/jenkins:lts-jdk11
 echo 'FROM jenkins/jenkins:lts-jdk11
 USER root
 RUN apt-get update && apt-get install -y apt-transport-https \
@@ -33,7 +37,7 @@ RUN add-apt-repository \
        $(lsb_release -cs) stable"
 RUN apt-get update && apt-get install -y docker-ce-cli
 USER jenkins
-RUN jenkins-plugin-cli --plugins "blueocean docker-plugin docker-workflow"' >> Dockerfile
+RUN jenkins-plugin-cli --plugins "blueocean sonar docker-plugin docker-workflow git"' > Dockerfile
 
 docker build -t jenkins-docker .
 docker run \
@@ -50,6 +54,11 @@ docker run \
   --volume jenkins-docker-certs:/certs/client:ro \
   --volume "$HOME":/home \
   jenkins-docker
+  
+# manual steps:
+# - enter security key
+# - setup username / password
+# - setup SonarQube servers (Name = SonarQube, Server URL = http://sonarqube-working:9000, add security key)
   
 
 echo "Starting PostgreSQL"
