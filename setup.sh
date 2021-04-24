@@ -58,9 +58,9 @@ docker run \
 # manual steps:
 # - enter security key
 # - setup username / password
-# - setup SonarQube servers (Name = SonarQube, Server URL = http://sonarqube-working:9000, add security key)
+# - setup SonarQube servers (Name = SonarQube, Server URL = http://sonarqube-working:9000, add Secret Text security key)
   
 
 echo "Starting PostgreSQL"
 docker pull postgres
-docker run --name postgres --rm --network jenkins -e POSTGRES_PASSWORD=password -e POSTGRES_DB=registration -d postgres
+docker run --name postgres --rm --network jenkins -e POSTGRES_PASSWORD=password -e POSTGRES_DB=registration -d -p 5432:5432 postgres
