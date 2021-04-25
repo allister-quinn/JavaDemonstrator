@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final AppUserService appUserService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
+    // Does this drop any requests not to the matcher?
     protected void configure(HttpSecurity http) throws Exception {
         http.
                 csrf().
@@ -44,5 +45,4 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(appUserService);
         return provider;
     }
-
 }

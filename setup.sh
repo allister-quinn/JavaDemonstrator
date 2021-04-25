@@ -64,3 +64,7 @@ docker run \
 echo "Starting PostgreSQL"
 docker pull postgres
 docker run --name postgres --rm --network jenkins -e POSTGRES_PASSWORD=password -e POSTGRES_DB=registration -d -p 5432:5432 postgres
+
+echo "Starting email server"
+docker pull maildev/maildev
+docker run --name maildev --rm --network jenkins -p 1080:80 -p 1025:25 -d maildev/maildev
