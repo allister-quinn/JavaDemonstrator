@@ -1,0 +1,63 @@
+version: "3.7"
+
+services:
+  dind:
+    image:
+      docker:dind
+    user: root
+    privileged: true
+    container_name: dind
+    expose:
+      - 2375
+    volumes:
+      - jenkins-data:/var/jenkins_home
+    environment:
+      DOCKER_TLS_CERTDIR: ""
+
+  jenkins-docker:
+    image:
+      jenkins/jenkins:lts
+    user: root
+    depends_on:
+      - dind
+    ports:
+      - 8081:8080
+      - 50000:50000
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /usr/bin/docker:/usr/bin/docker
+    environment:
+      - DOCKER_HOST=tcp://dind:2375
+
+  postgres:
+    image:
+      postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=registration
+  sonarqube:
+    image:
+      sonarqube-working
+    ports:
+      - 9000:9000
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+
+  maildev:
+    image:
+      maildev/maildev
+    ports:
+      - 1080:80
+      - 1025:25
+    environment:
+      - SONAR_ES_BOOTSTRAP_CHECKS_DISABLE=true
+
+volumes:
+  jenkins-data:
+    external: true
+    name: jenkins-data
+  jenkins-docker-certs:
+    external: true
+    name: jenkins-docker-certs
